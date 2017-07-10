@@ -7,6 +7,7 @@ metadata = Base.metadata
 
 
 class User(Base):
+    __tablename__ = 'users'
     id = Column('user_id', Integer, primary_key=True, nullable=False)
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
