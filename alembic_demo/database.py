@@ -1,5 +1,5 @@
 from sqlalchemy import MetaData
-from sqlalchemy import Table, Column, Integer, String, Enum
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base(metadata=MetaData())
@@ -12,3 +12,13 @@ class User(Base):
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
     login = Column(String(64), nullable=False)
+
+
+class Address(Base):
+    __tablename__ = 'addresses'
+    id = Column('address_id', Integer, primary_key=True, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.user_id'), nullable=False)
+    street = Column(String(128), nullable=False)
+    city = Column(String(64), nullable=False)
+    province = Column(String(32), nullable=False)
+    postal_code = Column(String(6))
